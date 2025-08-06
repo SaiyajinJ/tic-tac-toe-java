@@ -16,31 +16,43 @@ public class TicTacToe {
     public void start() {
         Scanner scanner = new Scanner(System.in);
 
-        while (!board.isFull()) {
-            board.print();  // 🔹 US02 erfüllt: Anzeige des Spielstands
+        boolean repeat;
+        do {
+            board.clear();
+            currentPlayer = player1;
 
-            System.out.println("Spieler " + currentPlayer.getMarker() + ", gib Zeile (0-2): ");
-            int row = scanner.nextInt();
-            System.out.println("und Spalte (0-2): ");
-            int col = scanner.nextInt();
+            while (!board.isFull() && !hasWinner()) {
+                board.print();  // US02
 
-            try {
-                board.place(row, col, currentPlayer.getMarker());
-                switchCurrentPlayer();
-            } catch (Exception e) {
-                System.out.println("Fehler: " + e.getMessage());
+                System.out.println("Spieler " + currentPlayer.getMarker() + ", gib Zeile (0-2): ");
+                int row = scanner.nextInt();
+                System.out.println("und Spalte (0-2): ");
+                int col = scanner.nextInt();
+
+                try {
+                    board.place(row, col, currentPlayer.getMarker());
+                    if (!hasWinner()) {
+                        switchCurrentPlayer();
+                    }
+                } catch (Exception e) {
+                    System.out.println("Fehler: " + e.getMessage());
+                }
             }
+
             board.print();
 
             if (hasWinner()) {
-                switchCurrentPlayer(); // zurück zum letzten Spieler (der gewonnen hat)
                 System.out.println("Spieler " + currentPlayer.getMarker() + " hat gewonnen!");
             } else {
                 System.out.println("Unentschieden!");
             }
-        }
 
-        board.print();
+            // 🔁 US04: Wiederholung abfragen
+            System.out.println("Nochmal spielen? (j/n): ");
+            String answer = scanner.next().toLowerCase();
+            repeat = answer.equals("j");
+
+        } while (repeat);
     }
 
     private void switchCurrentPlayer() {
