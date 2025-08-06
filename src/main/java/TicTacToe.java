@@ -70,4 +70,7 @@ public class TicTacToe {
         return (g[0][0] == m && g[1][1] == m && g[2][2] == m) || // diagonal
                 (g[0][2] == m && g[1][1] == m && g[2][0] == m);   // anti-diagonal
     }
+    public static void main(String[] args) {
+        new TicTacToe().start();
+    }
 }
