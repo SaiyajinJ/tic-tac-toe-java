@@ -45,4 +45,28 @@ class TicTacToeTest {
         });
     }
 
+    @Test
+    void hasWinner_returnsTrueForWinningRow() throws Exception {
+        TicTacToe game = new TicTacToe();
+        Board board = new Board();
+        board.place(0, 0, 'X');
+        board.place(0, 1, 'X');
+        board.place(0, 2, 'X');
+
+        var field = TicTacToe.class.getDeclaredField("board");
+        field.setAccessible(true);
+        field.set(game, board);
+
+        var playerField = TicTacToe.class.getDeclaredField("currentPlayer");
+        playerField.setAccessible(true);
+        playerField.set(game, new Player('X'));
+
+        assertTrue(game.hasWinner());
+    }
+
+    @Test
+    void hasWinner_returnsFalseWhenNoWinner() {
+        TicTacToe game = new TicTacToe();
+        assertFalse(game.hasWinner());
+    }
 }
