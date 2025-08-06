@@ -2,13 +2,10 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main", "feature/**" ]
-  pull_request:
     branches: [ "main" ]
 
 jobs:
   java-ci-with-maven:
-    name: Java CI with Maven
     runs-on: ubuntu-latest
 
     steps:
@@ -21,5 +18,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build and test with Maven
-        run: mvn -B verify
+      - name: Run Tests
+        run: mvn test
+
+      - name: Build with Maven
+        run: mvn -B package
+
+      - name: Upload JAR to GitHub Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tic-tac-toe-jar
+          path: target/*.jar
