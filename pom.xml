@@ -16,7 +16,7 @@
     </properties>
 
     <dependencies>
-        <!-- ✅ JUnit 5 für Tests -->
+        <!-- JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -27,7 +27,7 @@
 
     <build>
         <plugins>
-            <!-- ✅ JAR ausführbar machen -->
+            <!-- Ausführbares JAR erzeugen -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -41,7 +41,7 @@
                 </configuration>
             </plugin>
 
-            <!-- 🔧 Kompiler-Plugin -->
+            <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -52,7 +52,7 @@
                 </configuration>
             </plugin>
 
-            <!-- ✅ Checkstyle Plugin -->
+            <!-- Checkstyle -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -73,7 +73,7 @@
                 </configuration>
             </plugin>
 
-            <!-- ✅ JUnit 5 aktivieren -->
+            <!-- Tests mit JUnit 5 ausführen -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -87,5 +87,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
